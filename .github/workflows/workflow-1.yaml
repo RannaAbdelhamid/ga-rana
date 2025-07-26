@@ -4,6 +4,7 @@ on: push
 
 jobs:
     Rana:
+        needs: Rana2
         runs-on: ubuntu-latest
         steps:
             - name: Welcome 
