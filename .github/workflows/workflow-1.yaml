@@ -18,11 +18,14 @@ jobs:
     Rana2:
         runs-on: ubuntu-latest
         steps:
-            - name: checkout 
-              uses: actions/checkout@v4
-            - name: checkout 
-              run: |
-               ls -ltrah
-               cat README.md
-               sleep 10
+           - name: checkout 
+             uses: actions/checkout@v4
+             
+           - name: script 
+              #uses: actions/checkout@v4
+             #- name: checkout 
+             run: |
+               chmod +x .github/workflows/script.sh
+                .github/workflows/script.sh
+               
              
