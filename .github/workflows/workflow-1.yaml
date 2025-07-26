@@ -22,6 +22,6 @@ jobs:
               run: |
                ls -ltrah
                cat README.md
-               sleep 10
+               sleep 15
 
         
