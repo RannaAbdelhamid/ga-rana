@@ -20,11 +20,11 @@ jobs:
         run: echo "${{ secrets.PASSWORD }}" | docker login --username "${{ vars.USER_NAME }}" --password-stdin
 
       - name: Docker Publish
-        run: docker push ${{ var.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
+        run: docker push ${{ vars.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
 
   deploy:
     needs: docker
     runs-on: ubuntu-latest
     steps:
       - name: Docker Run
-        run: docker run -d -p 8080:80 ${{ var.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
+        run: docker run -d -p 8080:80 ${{ vars.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
