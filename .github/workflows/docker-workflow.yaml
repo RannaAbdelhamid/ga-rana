@@ -1,0 +1,30 @@
+name: Exploring Variables and Secrets
+
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: nginx
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Docker Build
+        run: docker build -t docker.io/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest .
+
+      - name: Docker Login
+        run: echo "${{ secrets.PASSWORD }}" | docker login --username "${{ vars.USER_NAME }}" --password-stdin
+
+      - name: Docker Publish
+        run: docker push docker.io/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
+
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Run
+        run: docker run -d -p 8080:80 docker.io/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
