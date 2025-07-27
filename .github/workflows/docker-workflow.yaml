@@ -17,7 +17,7 @@ jobs:
         run: docker build -t docker.io/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest .
 
       - name: Docker Login
-        run: echo "${{ secrets.PASSWORD }}" | docker login --username "${{ vars.USER_NAME }}" --password-stdin
+        run: echo "${{ secrets.PASSWORD }}" | docker login --username "${{ vars.USER_NAME }}" --password=${{ secrets.PASSWORD }}
 
       - name: Docker Publish
         run: docker push ${{ vars.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
