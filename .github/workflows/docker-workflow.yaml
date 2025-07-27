@@ -14,13 +14,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Docker Build
-        run: docker build -t ${{ vars.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest .
+        run: docker build -t ${{ vars.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:RanaAbdelhamid .
 
       - name: Docker Login
-        run: echo "${{ secrets.PASSWORD }}" | docker login --username "${{ vars.USER_NAME }}" --password-stdin
+        run: echo "${{ secrets.PASSWORD }}" | docker login  ${{ vars.REG_URL}} --username "${{ vars.USER_NAME }}" --password-stdin
 
       - name: Docker Publish
-        run: docker push ${{ vars.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
+        run: docker push ${{ vars.REG_URL}}/${{ vars.USER_NAME }}/${{ env.IMAGE_NAME }}:RanaAbdelhamid
 
   deploy:
     needs: docker
