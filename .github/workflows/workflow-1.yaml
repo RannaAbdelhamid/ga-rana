@@ -56,7 +56,7 @@ jobs:
             - name: cat dragon.txt
               run: |
                 cat dragon/dragon.txt
-                sleep 6000
+                sleep 60
     Rana2:
         # concurrency:
         #   group: production-deployment
